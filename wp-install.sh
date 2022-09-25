@@ -115,21 +115,37 @@ else
     echo -e "${RED}Wordpress installation failed${NC}"
 fi
 echo ""
+
+# ask user if they want to run the built-in server, prompt color is purple
+read -p "$(echo -e ${PURPLE}Do you want to run the built-in server? [y/n]:${NC}) " runserver
+echo ""
+# if user says yes, run the built-in server
+if [ $runserver == "y" ]; then
+    echo -e "${YELLOW}Running server${NC}"
+    echo ""
+    #promp for host, prompt color is purple
+    read -p "$(echo -e ${PURPLE}Enter the host:${NC}) " host
+    echo ""
+    # prompt for port, prompt color is purple
+    read -p "$(echo -e ${PURPLE}Enter the port:${NC}) " port
+    # ask for the protocol, prompt color is purple
+    read -p "$(echo -e ${PURPLE}Enter the protocol [http/https]:${NC}) " protocol
+    echo ""
+    wp server --host=$host --port=$port
+    # open the browser tab
+    open $protocol//$host:$port
+else
+    exit
+fi
+
 # now run the server, wp server is a built in command that runs a local server
 # message color is yellow
-echo -e "${YELLOW}Running server${NC}"
-echo ""
-#promp for host, prompt color is purple
-read -p "$(echo -e ${PURPLE}Enter the host:${NC}) " host
-echo ""
-# prompt for port, prompt color is purple
-read -p "$(echo -e ${PURPLE}Enter the port:${NC}) " port
-echo ""
+
 # run the server, message color is green
-wp server
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Server running${NC}"
-else
-    echo -e "${RED}Server failed to run${NC}"
-fi
-echo ""
+# wp server
+# if [ $? -eq 0 ]; then
+#     echo -e "${GREEN}Server running${NC}"
+# else
+#     echo -e "${RED}Server failed to run${NC}"
+# fi
+# echo ""
