@@ -47,3 +47,5 @@ for file in $(ls $plugindirpath/post-types); do
    echo "include_once plugin_dir_path(__FILE__) . 'post-types/$file';" >>$pluginfilepath
 
 done
+
+echo -e "${GREEN}---------- Done ----------${NC}"

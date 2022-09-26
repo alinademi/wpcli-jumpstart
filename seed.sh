@@ -136,9 +136,10 @@ for i in "${users[@]}"; do
     useremail=$(echo $i | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')@example.com
 
     displaynames=("John Doe" "Jane Doe" "John Smith" "Jane Smith" "John Brown" "Jane Brown" "John Black" "Jane Black" "John White" "Jane White" "John Green" "Jane Green" "John Blue" "Jane Blue" "John Yellow" "Jane Yellow" "John Orange" "Jane Orange" "John Purple" "Jane Purple")
-    # create the user
+
     wp user create $username $useremail --role=$username --display_name="${displaynames[$RANDOM % ${#displaynames[@]}]}"
 done
+
 echo ""
 
 echo -e "${GREEN}---------- Done ----------${NC}"
